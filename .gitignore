@@ -44,5 +44,5 @@ CodeCoverage/
 TestResult.xml
 nunit-*.xml
 
-.vs
-AntecipacaoDeRecebivel.API/*.user
+backend/.vs
+backend/AntecipacaoDeRecebivel.API/*.user
