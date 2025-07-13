@@ -18,6 +18,8 @@ namespace AntecipacaoDeRecebivel.Domain.Entities
         private readonly List<NotaFiscal> _notasFiscais = new();
         public IReadOnlyList<NotaFiscal> NotasFiscais => _notasFiscais.AsReadOnly();
 
+        public Empresa() { }
+
         public Empresa(string nome, string cnpj, decimal faturamentoMensal, RamoEnum ramo)
         {
             // Domain validation

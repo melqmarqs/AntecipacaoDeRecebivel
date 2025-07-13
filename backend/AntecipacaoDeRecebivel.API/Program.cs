@@ -24,6 +24,16 @@ builder.Services.AddScoped<INotaFiscalService, NotaFiscalService>();
 builder.Services.AddScoped<IEmpresaRepository, EmpresaRepository>();
 builder.Services.AddScoped<INotaFiscalRepository, NotaFiscalRepository>();
 
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowReact", policy =>
+    {
+        policy.AllowAnyOrigin()//WithOrigins("http://localhost:3000/")
+            .AllowAnyMethod()
+            .AllowAnyHeader();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -33,8 +43,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseHttpsRedirection();
-
+//app.UseHttpsRedirection();
+app.UseCors("AllowReact");
 app.UseAuthorization();
 
 app.MapControllers();

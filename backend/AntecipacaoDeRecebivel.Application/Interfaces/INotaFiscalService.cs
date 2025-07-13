@@ -1,4 +1,5 @@
-﻿using AntecipacaoDeRecebivel.Application.DTOs.NotaFiscal;
+﻿using AntecipacaoDeRecebivel.Application.DTOs.Antecipacao;
+using AntecipacaoDeRecebivel.Application.DTOs.NotaFiscal;
 using AntecipacaoDeRecebivel.Domain.Entities;
 
 namespace AntecipacaoDeRecebivel.Application.Interfaces
@@ -10,5 +11,6 @@ namespace AntecipacaoDeRecebivel.Application.Interfaces
         Task AddAsync(CreateNotaFiscalDto notaFiscal);
         Task UpdateAsync(NotaFiscalDto notaFiscal);
         Task DeleteAsync(int id);
+        Task<EmpresaAntecipacaoDto> CalcularAntecipacao(IEnumerable<int> nfsId);
     }
 }

@@ -1,4 +1,5 @@
-﻿using AntecipacaoDeRecebivel.Application.DTOs.NotaFiscal;
+﻿using AntecipacaoDeRecebivel.Application.DTOs.Antecipacao;
+using AntecipacaoDeRecebivel.Application.DTOs.NotaFiscal;
 using AntecipacaoDeRecebivel.Application.Interfaces;
 using AntecipacaoDeRecebivel.Domain.Entities;
 using AntecipacaoDeRecebivel.Domain.Interfaces;
@@ -94,17 +95,17 @@ namespace AntecipacaoDeRecebivel.API.Controllers
             }
         }
 
-        [HttpGet]
-        [Route("calcular-antecipacao")]
-        public async Task<ActionResult> CalcularAntecipacao([FromBody] IEnumerable<NotaFiscalDto> notasFiscaisDto)
+        [HttpPost]
+        [Route("calcular")]
+        public async Task<ActionResult<IEnumerable<EmpresaAntecipacaoDto>>> CalcularAntecipacao([FromBody] IEnumerable<int> notasFiscaisId)
         {
             try
             {
-
-                return Ok();
+                var resp = await _nfService.CalcularAntecipacao(notasFiscaisId);
+                return Ok(resp);
             } catch (ArgumentException arg)
             {
-                return NotFound(arg.Message);
+                return ValidationProblem(arg.Message);
             } catch (Exception e)
             {
                 return BadRequest(e.Message);
